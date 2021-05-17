@@ -33,3 +33,11 @@
 
 #Visual C++ cache files
 *.opendb
+*.db
+*.log
+*.idb
+*.pdb
+*.tlog
+
+#Options
+*.suo
