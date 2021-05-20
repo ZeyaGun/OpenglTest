@@ -24,6 +24,7 @@
     <ProjectGuid>{20ab0507-3d5f-46e4-a767-909ba92608c4}</ProjectGuid>
     <RootNamespace>PlaffyBird</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>OpenglTest</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
