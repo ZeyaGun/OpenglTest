@@ -21,6 +21,10 @@ float triIncrement = 0.01f;	// increment for every loop
 
 float curAngle = 0.0f;
 
+bool sizeDirection = true;
+float curSize = 0.4f;
+float maxSize = 0.8f;
+float minSize = 0.1f;
 // Vertex Shader
 static const char* vShader = "													\n\
 #version 330																	\n\
@@ -31,7 +35,7 @@ uniform mat4 model;															\n\
 																				\n\
 void main()																		\n\
 {																				\n\
-	gl_Position = model * vec4(pos.x * 0.4, pos.y * 0.4, pos.z, 1.0);			\n\
+	gl_Position = model * vec4(pos, 1.0);			\n\
 }";
 
 // Fragment Shader
@@ -191,13 +195,9 @@ int main()
 		glfwPollEvents();
 
 		if (direction)
-		{
 			triOffset += triIncrement;
-		}
 		else
-		{
 			triOffset -= triIncrement;
-		}
 
 		if (abs(triOffset) >= triMaxOffset)
 			direction = !direction;
@@ -205,6 +205,14 @@ int main()
 		curAngle += 0.1f;
 		if (curAngle >= 360)
 			curAngle = 0.0f;
+
+		if (sizeDirection)
+			curSize += 0.01f;
+		else
+			curSize -= 0.01f;
+
+		if (curSize <= minSize || maxSize <= curSize)
+			sizeDirection = !sizeDirection;
 
 		// Clear window
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -214,9 +222,9 @@ int main()
 
 		glm::mat4 model(1.0f);
 		
+		//model = glm::rotate(model, curAngle * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
 		//model = glm::translate(model, glm::vec3(triOffset, 0.0f, 0.0f));
-		model = glm::rotate(model, curAngle * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
-		
+		model = glm::scale(model, glm::vec3(curSize, curSize, 1.0f));
 
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 
