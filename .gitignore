@@ -43,3 +43,9 @@
 *.suo
 PlaffyBird/Debug/OpenglTest.ilk
 PlaffyBird/PlaffyBird/PlaffyBird.vcxproj
+*.ipch
+*.ilk
+*.vcxproj
+*.filters
+*.user
+*.recipe
