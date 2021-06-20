@@ -16,7 +16,7 @@ public:
 		return *instance;
 	}
 	
-	bool Init()
+	bool Init(int width, int height, std::string name)
 	{
 		if (!glfwInit())
 		{
@@ -34,7 +34,7 @@ public:
 		// Allow forward compatibility
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-		GLFWwindow* mainWindow = glfwCreateWindow(WIDTH, HEIGHT, "Test Window", NULL, NULL);
+		GLFWwindow* mainWindow = glfwCreateWindow(width, height, name.c_str(), NULL, NULL);
 		if (!mainWindow)
 		{
 			printf("GLFW window creation failed!\n");
